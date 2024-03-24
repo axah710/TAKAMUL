@@ -1,6 +1,8 @@
 # chat_app
 
 A new Flutter project.
+Developed a chat app with Flutter, integrating Firebase for authentication. Implemented UI components, form validation,
+and modal progress HUD for user experience. Also, built chat with Firestore, adding advanced features for functionalit.
 
 ## Getting Started
 
