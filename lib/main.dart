@@ -1,7 +1,8 @@
 import 'package:chat_app/Pages/chat_page.dart';
 import 'package:chat_app/Pages/login_page.dart';
 import 'package:chat_app/Pages/signup_page.dart';
-import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:chat_app/blocs/bloc/auth_bloc.dart';
+// import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
 // import 'package:chat_app/cubits/login_cubit/login_cubit.dart';
 // import 'package:chat_app/cubits/signup_cubit/signup_cubit.dart';
@@ -36,8 +37,11 @@ class TAKAMUL extends StatelessWidget {
         BlocProvider(
           create: (context) => ChatCubit(),
         ),
+        // BlocProvider(
+        //   create: (context) => AuthCubit(),
+        // ),
         BlocProvider(
-          create: (context) => AuthCubit(),
+          create: (context) => AuthBloc(),
         ),
       ],
       child: MaterialApp(

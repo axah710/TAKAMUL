@@ -1,7 +1,8 @@
 // ignore_for_file: must_be_immutable, use_build_context_synchronously, unused_local_variable
 
 import 'package:chat_app/Pages/login_page.dart';
-import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:chat_app/blocs/bloc/auth_bloc.dart';
+// import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
 // import 'package:chat_app/cubits/signup_cubit/signup_cubit.dart';
 import 'package:chat_app/helper/constants.dart';
 import 'package:chat_app/Components/custom_button.dart';
@@ -29,7 +30,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is SignupLoadingState) {
           isLoading = true;
@@ -127,12 +128,18 @@ class _SignupPageState extends State<SignupPage> {
                       buttonName: "Signup",
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthCubit>(context)
-                              .userSignupWithEmailAndPassword(
-                            email: email!,
-                            password: password!,
-                          );
+                          // BlocProvider.of<AuthCubit>(context)
+                          //     .userSignupWithEmailAndPassword(
+                          //   email: email!,
+                          //   password: password!,
+                          // );
                           // Triggering The Cubit ...
+                          BlocProvider.of<AuthBloc>(context).add(
+                            SignupEvent(
+                              email: email!,
+                              password: password!,
+                            ),
+                          );
                         }
                       },
                     ),

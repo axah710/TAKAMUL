@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable, avoid_print, unused_local_variable
-import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
+import 'package:chat_app/blocs/bloc/auth_bloc.dart';
+// import 'package:chat_app/cubits/auth_cubit/auth_cubit.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
 // import 'package:chat_app/cubits/login_cubit/login_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is LoginLoadingState) {
           isLoading = true;
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
           isLoading = false;
           BlocProvider.of<ChatCubit>(context).getMessage();
           // Why did we trigger getMessage here?
-          //because in this case we need while navigatinng to the chat
+          //because in this case we need while navigating to the chat
           //the messages need to be loaded successfully...
           Navigator.pushNamed(
             context,
@@ -132,10 +133,16 @@ class _LoginPageState extends State<LoginPage> {
                     buttonName: "Login",
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        BlocProvider.of<AuthCubit>(context)
-                            .userSigninWithEmailAndPassword(
-                          email: email!,
-                          password: password!,
+                        // BlocProvider.of<AuthCubit>(context)
+                        //     .userSigninWithEmailAndPassword(
+                        //   email: email!,
+                        //   password: password!,
+                        // );
+                        BlocProvider.of<AuthBloc>(context).add(
+                          LoginEvent(
+                            email: email!,
+                            password: password!,
+                          ),
                         );
                       }
                     },

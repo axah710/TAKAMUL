@@ -10,10 +10,13 @@ class CustomTextFormField extends StatelessWidget {
     required this.myIcon,
     required this.onChanged,
   });
+
   String labelText;
   IconData myIcon;
-  Function(String)? onChanged;
   bool? obscureText;
+
+  Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
