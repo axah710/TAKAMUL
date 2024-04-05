@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_state.dart';
@@ -60,4 +60,16 @@ class AuthCubit extends Cubit<AuthState> {
       }
     }
   }
+
+  @override
+  void onChange(Change<AuthState> change) {
+    super.onChange(change);
+    if (kDebugMode) {
+      print(change);
+    }
+  }
+  // This method is overridden from the Cubit class and is called whenever
+  //the state of the AuthCubit changes. It prints the state changes if the
+  //application is running in debug mode.
+  // It shows the current and the next state ...
 }

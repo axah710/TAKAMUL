@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_event.dart';
@@ -66,4 +66,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     });
   }
+  @override
+  void onTransition(Transition<AuthEvent, AuthState> transition) {
+    super.onTransition(transition);
+    if (kDebugMode) {
+      print(transition);
+    }
+  }
+  // This method is called after a transition occurs between states.
+  // It logs the transition if the application is running in debug mode.
+  // It shows current state , current event and next stat occurred by the event.
 }
